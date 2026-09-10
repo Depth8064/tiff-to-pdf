@@ -1,0 +1,36 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net10.0-windows</TargetFramework>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <AssemblyName>TiffToPdf</AssemblyName>
+    <RootNamespace>TiffToPdf</RootNamespace>
+    <ApplicationHighDpiMode>PerMonitorV2</ApplicationHighDpiMode>
+
+    <!-- Single, self-contained exe: no .NET runtime install required on target machines -->
+    <SelfContained>true</SelfContained>
+    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+    <PublishSingleFile>true</PublishSingleFile>
+    <IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>
+    <InvariantGlobalization>true</InvariantGlobalization>
+    <EnableCompressionInSingleFile>true</EnableCompressionInSingleFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="TiffToPdf.Core\TiffToPdf.Core.csproj" />
+  </ItemGroup>
+
+  <!-- Sibling projects have their own .csproj and must not be swept up by this project's default globbing -->
+  <ItemGroup>
+    <Compile Remove="TiffToPdf.Core\**" />
+    <Compile Remove="TiffToPdf.Tests\**" />
+    <EmbeddedResource Remove="TiffToPdf.Core\**" />
+    <EmbeddedResource Remove="TiffToPdf.Tests\**" />
+    <None Remove="TiffToPdf.Core\**" />
+    <None Remove="TiffToPdf.Tests\**" />
+  </ItemGroup>
+
+</Project>

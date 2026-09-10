@@ -1,0 +1,40 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*.*.*"
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-release:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "10.0.x"
+
+      - name: Test
+        run: dotnet test TiffToPdf.Tests/TiffToPdf.Tests.csproj --configuration Release
+
+      - name: Publish
+        run: dotnet publish TiffToPdf.csproj -c Release -r win-x64
+
+      - name: Zip release asset
+        shell: pwsh
+        run: |
+          $publishDir = "bin/Release/net10.0-windows/win-x64/publish"
+          Compress-Archive -Path "$publishDir/TiffToPdf.exe" -DestinationPath "TiffToPdf-${{ github.ref_name }}-win-x64.zip"
+
+      - name: Create GitHub release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            TiffToPdf-${{ github.ref_name }}-win-x64.zip
+          generate_release_notes: true
