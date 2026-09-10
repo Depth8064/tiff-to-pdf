@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Questions and help
+    url: https://github.com/Depth8064/tiff-to-pdf/discussions
+    about: Ask usage questions or discuss ideas before filing an issue.

@@ -1,0 +1,72 @@
+name: Bug report
+description: Report a reproducible problem with TIFF conversion or the Windows app
+title: "bug: "
+labels:
+  - bug
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting a problem. Do not upload TIFF files containing private or sensitive information.
+
+  - type: input
+    id: version
+    attributes:
+      label: App version
+      description: Release tag or commit, if building from source.
+      placeholder: v1.2.3
+    validations:
+      required: true
+
+  - type: input
+    id: windows-version
+    attributes:
+      label: Windows version
+      placeholder: Windows 11 24H2
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Problem
+      description: What happened, and what did you expect instead?
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Open the app
+        2. Select a TIFF with ...
+        3. Save the PDF
+        4. Observe ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: tiff-details
+    attributes:
+      label: TIFF details
+      description: Include page count, dimensions, DPI, compression, color mode, and approximate file size when known.
+      placeholder: Single page, 2550x3300, 300 DPI, grayscale, LZW, 4 MB
+    validations:
+      required: true
+
+  - type: textarea
+    id: error
+    attributes:
+      label: Error message or additional context
+      description: Paste the complete error text and add screenshots if useful.
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Checklist
+      options:
+        - label: I tested with the latest available release.
+          required: true
+        - label: I removed private or sensitive information from all attachments.
+          required: true
