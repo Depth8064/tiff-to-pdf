@@ -33,7 +33,7 @@ jobs:
           Compress-Archive -Path "$publishDir/TiffToPdf.exe" -DestinationPath "TiffToPdf-${{ github.ref_name }}-win-x64.zip"
 
       - name: Create GitHub release
-        uses: softprops/action-gh-release@v2
+        uses: softprops/action-gh-release@v3
         with:
           files: |
             TiffToPdf-${{ github.ref_name }}-win-x64.zip
